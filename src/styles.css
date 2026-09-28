@@ -1,0 +1,269 @@
+/* Seraphim — theme taken from the business card:
+   pure black, white type, everything centred.
+   Logo: vector artwork (Old English Text MT "S"), identical on every device.
+   Spaced line: Orbitron. Body: Aptos (used when installed), Inter otherwise. */
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --text: rgba(255, 255, 255, 0.88);
+  --muted: rgba(255, 255, 255, 0.6);
+  --line: rgba(255, 255, 255, 0.32);
+
+  --font-tech: 'Orbitron', sans-serif;
+  --font-body: 'Aptos', 'Inter Variable', 'Segoe UI', system-ui, sans-serif;
+
+  /* The card's spacing, as a proportion of type size */
+  --url-tracking: 0.36em; /* +2.5pt at 7pt on the card */
+
+  --measure: 34rem;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--black);
+  color: var(--white);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--black);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--white);
+  color: var(--black);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+  font-weight: 400;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Hero: the card lockup, at full scale ---------- */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem var(--gutter) 9rem;
+}
+
+.logo {
+  /* font-size sets the logo's scale: the mark is 3.93em wide */
+  font-size: clamp(4.25rem, 21vw, 12.5rem);
+  line-height: 0;
+  color: var(--white);
+  animation: resolve 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.logo-mark {
+  display: block;
+  width: 3.93em;
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.url {
+  margin-top: clamp(0.9rem, 2.2vw, 1.6rem);
+  font-family: var(--font-tech);
+  font-size: clamp(0.75rem, 1.7vw, 1.05rem);
+  line-height: 1;
+  letter-spacing: var(--url-tracking);
+  /* balance the trailing letter-space so the line centres truly */
+  padding-left: var(--url-tracking);
+  color: var(--white);
+  animation: open-tracking 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) 0.7s both;
+}
+
+/* The tether: a thin line joining each part of the page, like Journey1's cable */
+.tether {
+  display: block;
+  width: 1px;
+  height: clamp(3.5rem, 9vh, 5.5rem);
+  margin: 0 auto;
+  background: linear-gradient(to bottom, transparent, var(--line) 30%, var(--line) 70%, transparent);
+}
+
+.hero .tether {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: fade 1s ease 1.8s both;
+}
+
+/* ---------- Content ---------- */
+
+main {
+  padding: 0 var(--gutter);
+}
+
+.block {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vh, 5rem) 0;
+}
+
+.intro {
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+  line-height: 1.6;
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.heading-lead {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.3;
+  color: var(--muted);
+}
+
+.product {
+  font-family: var(--font-tech);
+  font-size: clamp(2.25rem, 7vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: 0.08em;
+  padding-left: 0.08em;
+  color: var(--white);
+}
+
+.statement {
+  font-family: var(--font-body);
+  font-size: clamp(1.5rem, 3.6vw, 2.125rem);
+  line-height: 1.3;
+  color: var(--white);
+  text-wrap: balance;
+}
+
+.body {
+  margin-top: 1.5rem;
+  font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+/* ---------- Footer: the card's contact lines ---------- */
+
+.footer {
+  padding: clamp(5rem, 14vh, 8rem) var(--gutter) 3rem;
+}
+
+.contact-name {
+  font-size: 1.125rem;
+  letter-spacing: 0.02em;
+  color: var(--white);
+}
+
+.contact-email {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.contact-email:hover {
+  color: var(--white);
+  border-bottom-color: var(--line);
+}
+
+.contact-email:focus-visible {
+  outline: 1px solid var(--white);
+  outline-offset: 4px;
+}
+
+.copyright {
+  margin-top: 3.5rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* ---------- One orchestrated entrance: the logo comes into focus,
+   then the address opens out to the card's spacing ---------- */
+
+@keyframes resolve {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes open-tracking {
+  from {
+    opacity: 0;
+    letter-spacing: 0;
+    padding-left: 0;
+  }
+  to {
+    opacity: 1;
+    letter-spacing: var(--url-tracking);
+    padding-left: var(--url-tracking);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo,
+  .url,
+  .hero .tether {
+    animation: none;
+  }
+}
